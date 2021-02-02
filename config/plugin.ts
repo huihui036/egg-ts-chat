@@ -21,7 +21,8 @@ const plugin: EggPlugin = {
   mongoose: {
     enable: true, // 开启插件
     package: 'egg-mongoose'
-  }
+  },
+
 };
 
 export default plugin;

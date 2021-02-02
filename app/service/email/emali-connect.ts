@@ -16,7 +16,7 @@ function randMathCode(length: number) {
 
   const connext = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklnmopqrstuvwxyz012345678'
   let code = ''
-  for (let i = 0; i <= length; i++) {
+  for (let i = 1; i <= length; i++) {
     const index = parseInt((Math.random() * connext.length).toString())
     code = code + connext[index]
   }

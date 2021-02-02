@@ -11,3 +11,28 @@ export interface ParameterError {
   code: string;
   field: string
 }
+
+
+export interface Regiter {
+  name: string,
+  avatar?: string,
+  check_code: string
+  password: string,
+  password2: string,
+  email: string,
+}
+
+export interface RegiterDb {
+  name: string,
+  account: string,
+  avatar?: string,
+  password: string,
+  email: string,
+  state: number
+}
+
+export interface checkCode {
+  user: string,
+  codeType: number,
+  code: string
+}
