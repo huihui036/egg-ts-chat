@@ -22,6 +22,10 @@ const plugin: EggPlugin = {
     enable: true, // 开启插件
     package: 'egg-mongoose'
   },
+  io: {
+    enable: true,
+    package: 'egg-socket.io',
+  }
 
 };
 

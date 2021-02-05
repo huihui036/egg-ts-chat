@@ -34,7 +34,26 @@ export default (appInfo: EggAppInfo) => {
       db: 0,
     }
   };
+  config.io = {
+    init: {
+      wsEngine: 'ws',
+    },
+    redis: {
+      host: '127.0.0.1',
+      port: 6379,
+    },
+    namespace: {
+      '/tictactoe': {
+        connectionMiddleware: ['auth'],
+        packetMiddleware: [],
+      },
+      '/': {
+        connectionMiddleware: ['auth'],
+        packetMiddleware: [],
+      },
 
+    },
+  }
 
 
   // the return config will combines to EggAppConfig

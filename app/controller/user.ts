@@ -3,6 +3,7 @@ import { compareSync } from 'bcrypt'
 import { HttpParameterExceptions, HttpExceptions } from '../middleware/http_exceptions'
 import { checkCode } from "../interface/interface"
 import { Regiter } from '../interface/interface'
+
 const createRule = {
   userName: {
     type: 'email',
@@ -76,6 +77,7 @@ export default class UserController extends Controller {
       throw new HttpExceptions("验证码已发送", 10003, 300)
     }
     // 将验证码通过email 发送到用户邮箱
+
     await this.service.email.emailSend.sendEmail(userData)
     throw new HttpExceptions(`验证码已经成功发送${redisData}`, 10002, 200)
 
