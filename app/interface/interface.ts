@@ -23,6 +23,7 @@ export interface Regiter {
 }
 
 export interface RegiterDb {
+  id?: string,
   name: string,
   account: string,
   avatar?: string,
@@ -30,9 +31,21 @@ export interface RegiterDb {
   email: string,
   state: number
 }
+export interface Logibn {
+  email: string,
+  password: string
+}
+
 
 export interface checkCode {
-  user: string,
-  codeType: number,
+  email: string,
+  code_type: number,
   code: string
 }
+
+
+export interface recetPasswrd {
+  email: string,
+  new_password: string,
+  check_code: string
+} 

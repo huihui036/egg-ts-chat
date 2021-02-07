@@ -34,6 +34,9 @@ export default (appInfo: EggAppInfo) => {
       db: 0,
     }
   };
+  config.jwt = {
+    secret: "165165"
+  };
   config.io = {
     init: {
       wsEngine: 'ws',
@@ -42,6 +45,7 @@ export default (appInfo: EggAppInfo) => {
       host: '127.0.0.1',
       port: 6379,
     },
+
     namespace: {
       '/tictactoe': {
         connectionMiddleware: ['auth'],
@@ -51,7 +55,6 @@ export default (appInfo: EggAppInfo) => {
         connectionMiddleware: ['auth'],
         packetMiddleware: [],
       },
-
     },
   }
 

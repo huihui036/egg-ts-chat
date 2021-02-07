@@ -25,6 +25,7 @@
     "@types/socket.io": "^2.1.13",
     "bcrypt": "^5.0.0",
     "egg": "^2.6.1",
+    "egg-jwt": "^3.1.7",
     "egg-mongoose": "^3.3.1",
     "egg-scripts": "^2.6.0",
     "egg-sequelize": "^6.0.0",
@@ -36,6 +37,7 @@
   },
   "devDependencies": {
     "@types/bcrypt": "^3.0.0",
+    "@types/jsonwebtoken": "^8.5.0",
     "@types/mocha": "^2.2.40",
     "@types/module-alias": "^2.0.0",
     "@types/node": "^7.0.12",

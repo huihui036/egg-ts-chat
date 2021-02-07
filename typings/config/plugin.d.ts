@@ -17,6 +17,7 @@ import 'egg-view';
 import 'egg-validate';
 import 'egg-redis';
 import 'egg-mongoose';
+import 'egg-jwt';
 import 'egg-socket.io';
 import { EggPluginItem } from 'egg';
 declare module 'egg' {
@@ -36,6 +37,7 @@ declare module 'egg' {
     validate?: EggPluginItem;
     redis?: EggPluginItem;
     mongoose?: EggPluginItem;
+    jwt?: EggPluginItem;
     io?: EggPluginItem;
   }
 }

@@ -6,14 +6,14 @@ import configData from '../../../config/config.data'
 import { checkCode } from "../../interface/interface"
 export default class SendeEamil extends Controller {
 
-  async sendEmail(userData) {
+  async sendEmail(userData: checkCode) {
     const { app } = this;
     // ctx.body = ctx.request.body;
     const transporter = nodemailer.createTransport(configData.config)
-    const mail = emailConnect(userData.userName, userData.codeType)
+    const mail = emailConnect(userData.email, userData.code_type)
     const saveCode: checkCode = {
-      user: userData.userName,
-      codeType: userData.codeType,
+      email: userData.email,
+      code_type: userData.code_type,
       code: mail.randMathCode
     }
     transporter.sendMail(mail, (err, info) => {
@@ -23,7 +23,7 @@ export default class SendeEamil extends Controller {
       transporter.close()
       console.log('mail sent:', info.response)
     })
-    await app.redis.setex(userData.userName, 6 * 10 * 30, JSON.stringify(saveCode))
+    await app.redis.setex(userData.email, 6 * 10 * 30, JSON.stringify(saveCode))
   }
 
 }

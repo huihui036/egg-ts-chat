@@ -29,6 +29,8 @@ export default class AppBootHook {
   async didReady() {
     // 应用已经启动完毕
     this.app.logger.info('-----启动成功-----');
+
+
   }
 
   async serverDidReady() {

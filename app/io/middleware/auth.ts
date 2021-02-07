@@ -1,5 +1,6 @@
 import { Context } from 'egg'
 
+import { verify } from 'jsonwebtoken'
 
 export default function AuthMiddleware() {
   return async (ctx: Context, next: () => Promise<any>) => {
@@ -12,22 +13,29 @@ export default function AuthMiddleware() {
     const nsp = app.io.of('/');
     // const query = socket.handshake.query;
     console.log('sockeId', id);
+
+    let userToken = socket.handshake.query.token
+    let varifyToken: any = verify(userToken, app.config.jwt.secret, (err, decoded) => {
+      if (!err) {
+        return decoded
+      }
+      return err
+    });
+
+    if (!varifyToken.userId) {
+      ctx.socket.emit('remove', 'tonken 错误');
+      ctx.socket.disconnect(true)
+      return
+    }
+
+    console.log('vwerTOKNE', varifyToken);
     // 用户信息
     logger.info(`用户加入id：${id}`)
-    // 连接建立
     logger.info(`用户离开id：${id}`)
-    //   console.log(query)
     logger.debug('#join', 123);
     const room = '123'
     socket.join(room);
-    const obj = {
-      name: "huihui",
-      age: 123
-    }
-    console.log(id)
-    // console.log(nsp.server.sockets)
-    nsp.to(id).emit('message', JSON.stringify(obj))
-    ctx.socket.emit('res', 'packet received!=====');
+
     // 删除用户
     // ctx.socket.disconnect(true)
     socket.on('message', function (obj) {

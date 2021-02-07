@@ -2,12 +2,12 @@
 enum EmailType {
   Rejisiter = 1000,
   Login = 1001,
-  ForgetPass = 1002
+  recetPassword = 1002
 }
 enum ConnextType {
   Rejisiter = "注册验证码",
   Login = "登入验证码",
-  ForgetPass = "密码重置验证码"
+  recetPassword = "密码重置验证码"
 }
 
 // 生成随机验证
@@ -33,11 +33,11 @@ function emailConnect(userEmail: string, type: number) {
     case EmailType.Login:
       contexType = ConnextType.Login;
       break
-    case EmailType.ForgetPass:
-      contexType = ConnextType.ForgetPass;
+    case EmailType.recetPassword:
+      contexType = ConnextType.recetPassword;
       break
   }
-  const randmonCode = randMathCode(6)
+  const randmonCode = randMathCode(3)
   const mailConnect = {
     // 发件人 邮箱  '昵称<发件人邮箱>'
     from: '自主聊天网络<1315574336@qq.com>',
@@ -54,4 +54,4 @@ function emailConnect(userEmail: string, type: number) {
   return mailConnect
 
 }
-export { emailConnect } 
+export { emailConnect, EmailType } 
