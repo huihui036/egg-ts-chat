@@ -64,19 +64,6 @@ export default class User extends Service {
     }
   }
 
-  // async getRedis(userData): Promise<checkCode> {
-  //   let redisData = await this.app.redis.get(userData.email)
-  //   let isUserData
-  //   if (redisData) {
-  //     isUserData = JSON.parse(redisData)
-  //   }
-  //   console.log(isUserData)
-  //   if (isUserData && isUserData.codeType == userData.codeType) {
-  //     throw new HttpExceptions("验证码已发送", 10003, 300)
-  //   }
-
-  //   return isUserData
-  // }
   public async getEmailCode(userData: checkCode) {
     // 检验是否30分钟内已经发送过注册验证码
     let redisData = await this.app.redis.get(userData.email)

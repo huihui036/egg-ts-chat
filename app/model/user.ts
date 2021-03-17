@@ -35,6 +35,7 @@ export default function (app: { mongoose: any }) {
     },
   })
 
+
   const User = mongoose.model('Users', UserSchema)
 
 

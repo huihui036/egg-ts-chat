@@ -37,6 +37,19 @@ export default (appInfo: EggAppInfo) => {
   config.jwt = {
     secret: "165165"
   };
+  config.security = {
+    // 关闭 csrf
+    csrf: {
+      enable: false,
+    },
+    // 跨域白名单
+    domainWhiteList: ['*'],
+  };
+  // 允许跨域的方法
+  config.cors = {
+    origin: '*',
+    allowMethods: 'GET, PUT, POST, DELETE, PATCH'
+  };
   config.io = {
     init: {
       wsEngine: 'ws',

@@ -40,6 +40,15 @@ export default function AuthMiddleware() {
     // ctx.socket.disconnect(true)
     socket.on('message', function (obj) {
       // 向所有客户端广播发布的消息
+      const messageData = {
+        receiver: " 接收者id",
+        sender: "发生在",
+        reply: "恢复id",
+        content: "内容===",
+        forward: " z转发给d",
+        status: 1000
+      }
+      app.model.Message.create(messageData)
       console.log('messag', obj);
       nsp.to(room).emit('online', {
         action: 'const',

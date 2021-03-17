@@ -25,11 +25,11 @@ module.exports = () => {
         error.code = err.code;
         error.httpCode = err.httpCode;
       } else if (err instanceof HttpParameterExceptions) {
-        status = 400
+        status = 401
         error.requestUrl = `${ctx.method} : ${ctx.path}`;
         error.msg = err.msg;
         error.code = 4001;
-        error.httpCode = 400;
+        error.httpCode = 401;
       } else {
         // 未知异常，系统异常，线上不显示堆栈信息
         // 生产环境时 500 错误的详细错误内容不返回给客户端，因为可能包含敏感信息
