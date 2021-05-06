@@ -107,7 +107,7 @@ export default class User extends Service {
       if (updata) {
         throw new HttpExceptions("密码修改成", 10010, 200)
       } else {
-        throw new HttpExceptions("密码修改失败", 10011, 400)
+        throw new HttpExceptions("密码修改失败", 10011, 401)
       }
 
     } else {
