@@ -11,7 +11,7 @@ const regitertRule = {
   email: {
     type: 'email',
   },
-  name: {
+  userName: {
     type: 'string',
     max: 18,
     min: 6,

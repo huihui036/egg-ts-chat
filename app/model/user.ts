@@ -3,7 +3,7 @@ export default function (app: { mongoose: any }) {
   const mongoose = app.mongoose;
   const Schema = mongoose.Schema;
   const UserSchema = new Schema({
-    name: {
+    userName: {
       type: String,
       minlength: [6, '最小长度为6'],
       maxlength: [18, '最大度为18'],

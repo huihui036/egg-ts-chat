@@ -37,7 +37,7 @@ export default class User extends Service {
   }
 
   public async findUserByemail(email: string): Promise<RegiterDb> {
-
+    console.log(email)
     return new Promise((resolve, reject) => {
       this.app.model.User.findOne({ email }, (err, data) => {
         if (err) {
