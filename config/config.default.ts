@@ -19,7 +19,17 @@ export default (appInfo: EggAppInfo) => {
       enable: false,
     }
   }
+  config.security = {
+    csrf: {
+      enable: false,
+      ignoreJSON: true
+    },
+  };
 
+  config.cors = {
+    origin: '*',
+    allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH'
+  };
   config.mongoose = {
     client: {
       url: 'mongodb://127.0.0.1:27017/egg-mongo',

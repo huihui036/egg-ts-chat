@@ -16,7 +16,7 @@ export interface ParameterError {
 export interface Regiter {
   name: string,
   avatar?: string,
-  check_code: string
+  checkCode: string
   password: string,
   password2: string,
   email: string,

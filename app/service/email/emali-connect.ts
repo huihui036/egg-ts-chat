@@ -5,39 +5,41 @@ enum EmailType {
   ForgetPass = 1002
 }
 enum ConnextType {
-  Rejisiter = "注册验证码",
-  Login = "登入验证码",
-  ForgetPass = "密码重置验证码"
+  Rejisiter = '注册验证码',
+  Login = '登入验证码',
+  ForgetPass = '密码重置验证码'
 }
 
 // 生成随机验证
 
 function randMathCode(length: number) {
 
-  const connext = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklnmopqrstuvwxyz012345678'
-  let code = ''
+  const connext = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklnmopqrstuvwxyz012345678';
+  let code = '';
   for (let i = 1; i <= length; i++) {
-    const index = parseInt((Math.random() * connext.length).toString())
-    code = code + connext[index]
+    const index = parseInt((Math.random() * connext.length).toString());
+    code = code + connext[index];
   }
 
-  return code
+  return code;
 }
 
 function emailConnect(userEmail: string, type: number) {
-  let contexType: string = ''
+  let contexType = '';
   switch (type) {
     case EmailType.Rejisiter:
       contexType = ConnextType.Rejisiter;
-      break
+      break;
     case EmailType.Login:
       contexType = ConnextType.Login;
-      break
+      break;
     case EmailType.ForgetPass:
       contexType = ConnextType.ForgetPass;
-      break
+      break;
+    default:
+      console.log('类型错误');
   }
-  const randmonCode = randMathCode(6)
+  const randmonCode = randMathCode(6);
   const mailConnect = {
     // 发件人 邮箱  '昵称<发件人邮箱>'
     from: '自主聊天网络<1315574336@qq.com>',
@@ -48,10 +50,10 @@ function emailConnect(userEmail: string, type: number) {
     randMathCode: randmonCode,
     // 内容
     text: `您的激活验证码为：${randmonCode}, 30分钟内有效，请谨慎保管。`,
-    //这里可以添加html标签
-    html: `<p>您的激活验证码为：${randmonCode}, 30分钟内有效，请谨慎保管</p>`
-  }
-  return mailConnect
+    // 这里可以添加html标签
+    html: `<p>您的激活验证码为：${randmonCode}, 30分钟内有效，请谨慎保管</p>`,
+  };
+  return mailConnect;
 
 }
-export { emailConnect } 
+export { emailConnect };

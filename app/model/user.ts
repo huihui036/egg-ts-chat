@@ -1,12 +1,12 @@
 
 export default function (app: { mongoose: any }) {
-  const mongoose = app.mongoose
-  const Schema = mongoose.Schema
+  const mongoose = app.mongoose;
+  const Schema = mongoose.Schema;
   const UserSchema = new Schema({
     name: {
       type: String,
-      minlength: [4, '最小长度为4'],
-      maxlength: [6, '最大度为6'],
+      minlength: [6, '最小长度为6'],
+      maxlength: [18, '最大度为18'],
       required: [true, '此项为必填内容'],
       comment: '用户名称',
     },
@@ -31,12 +31,11 @@ export default function (app: { mongoose: any }) {
     },
     date: {
       type: Date,
-      default: Date.now()
+      default: Date.now(),
     },
-  })
+  });
 
-  const User = mongoose.model('Users', UserSchema)
+  const User = mongoose.model('Users', UserSchema);
 
-
-  return User
+  return User;
 }

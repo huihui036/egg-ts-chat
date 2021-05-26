@@ -18,6 +18,10 @@ const plugin: EggPlugin = {
   //   enable: true,
   //   package: 'egg-sequelize',
   // },
+  cors: {
+    enable: true,
+    package: 'egg-cors',
+  },
   mongoose: {
     enable: true, // 开启插件
     package: 'egg-mongoose'
