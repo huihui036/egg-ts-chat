@@ -1,8 +1,8 @@
-import { Application, } from 'egg';
+import { Application } from 'egg';
 
 export default (app: Application) => {
 
-  const { controller, router, io, } = app;
+  const { controller, router, io } = app;
   // router.get('/', controller.home.index);
   // const chat: any = io.controller
   // io.of('/').route('server', chat.index);
@@ -15,5 +15,5 @@ export default (app: Application) => {
   // 登入
   router.post('/user/login', controller.user.login);
   router.post('/user/recetp', controller.user.recetPassword);
-  io.of('/').route('exchange', io.controller.tictactoe.exchange)
-}
+  io.of('/').route('exchange', io.controller.tictactoe.exchange);
+};

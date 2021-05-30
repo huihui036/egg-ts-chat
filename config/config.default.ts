@@ -8,7 +8,7 @@ export default (appInfo: EggAppInfo) => {
   config.keys = appInfo.name + '_1610851740528_5231';
 
   // add your egg config in here
-  config.middleware = ['errorHandler'];
+  config.middleware = [ 'errorHandler' ];
 
   // add your special config in here
   const bizConfig = {
@@ -17,25 +17,25 @@ export default (appInfo: EggAppInfo) => {
   config.security = {
     csrf: {
       enable: false,
-    }
-  }
+    },
+  };
 
   config.mongoose = {
     client: {
       url: 'mongodb://127.0.0.1:27017/egg-mongo',
-      options: {}
-    }
-  }
+      options: {},
+    },
+  };
   config.redis = {
     client: {
       port: 6379,
       host: '127.0.0.1',
       password: '',
       db: 0,
-    }
+    },
   };
   config.jwt = {
-    secret: "165165"
+    secret: '165165',
   };
   config.security = {
     // 关闭 csrf
@@ -43,12 +43,12 @@ export default (appInfo: EggAppInfo) => {
       enable: false,
     },
     // 跨域白名单
-    domainWhiteList: ['*'],
+    domainWhiteList: [ '*' ],
   };
   // 允许跨域的方法
   config.cors = {
     origin: '*',
-    allowMethods: 'GET, PUT, POST, DELETE, PATCH'
+    allowMethods: 'GET, PUT, POST, DELETE, PATCH',
   };
   config.io = {
     init: {
@@ -61,15 +61,15 @@ export default (appInfo: EggAppInfo) => {
 
     namespace: {
       '/tictactoe': {
-        connectionMiddleware: ['auth'],
+        connectionMiddleware: [ 'auth' ],
         packetMiddleware: [],
       },
       '/': {
-        connectionMiddleware: ['auth'],
+        connectionMiddleware: [ 'auth' ],
         packetMiddleware: [],
       },
     },
-  }
+  };
 
 
   // the return config will combines to EggAppConfig
