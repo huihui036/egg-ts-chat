@@ -27,6 +27,7 @@ const plugin: EggPlugin = {
     package: 'egg-mongoose'
   },
 
+
 };
 
 export default plugin;

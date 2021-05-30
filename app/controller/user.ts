@@ -103,7 +103,7 @@ export default class UserController extends Controller {
       console.log(error);
       throw new HttpExceptions('登入用户查询失败', 10004, 400);
     }
-    debugger
+
     if (!userIsExistence) {
       throw new HttpExceptions('登入失败用户不存在', 10006, 400);
     }

@@ -47,6 +47,7 @@ export default (appInfo: EggAppInfo) => {
 
 
 
+
   // the return config will combines to EggAppConfig
   return {
     ...config,
