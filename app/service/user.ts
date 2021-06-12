@@ -27,7 +27,7 @@ export default class User extends Service {
     const redisData = await this.app.redis.get(userData.email);
     if (redisData) {
       const isUserData: checkCode = JSON.parse(redisData);
-      if (isUserData.code !== userData.check_code) {
+      if (isUserData.code !== userData.checkCode) {
         throw new HttpExceptions('验证码错误', 10007, 400);
       }
     } else {
@@ -74,11 +74,11 @@ export default class User extends Service {
       isUserData = JSON.parse(redisData);
     }
     console.log(isUserData);
-    if (isUserData && isUserData.code_type === userData.code_type) {
+    if (isUserData && isUserData.code_type === userData.codeType) {
       throw new HttpExceptions('验证码已发送', 10003, 300);
     }
     const userIsExistence = await this.app.model.User.findOne({ email: userData.email });
-    if (userIsExistence && isUserData.code_type === userData.code_type) {
+    if (userIsExistence && isUserData.code_type === userData.codeType) {
       throw new HttpExceptions('该邮箱已经被注册', 10001, 200);
     }
     // 将验证码通过email 发送到用户邮箱

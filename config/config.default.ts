@@ -20,6 +20,10 @@ export default (appInfo: EggAppInfo) => {
     },
   };
 
+  config.cors = {
+    origin: '*',
+    allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH'
+  };
   config.mongoose = {
     client: {
       url: 'mongodb://127.0.0.1:27017/egg-mongo',
@@ -70,6 +74,7 @@ export default (appInfo: EggAppInfo) => {
       },
     },
   };
+
 
 
   // the return config will combines to EggAppConfig

@@ -16,7 +16,7 @@ export interface ParameterError {
 export interface Regiter {
   name: string,
   avatar?: string,
-  check_code: string
+  checkCode: string
   password: string,
   password2: string,
   email: string,
@@ -39,7 +39,7 @@ export interface Logibn {
 
 export interface checkCode {
   email: string,
-  code_type: number,
+  codeType: number,
   code: string
 }
 
@@ -48,4 +48,4 @@ export interface recetPasswrd {
   email: string,
   new_password: string,
   check_code: string
-} 
+}

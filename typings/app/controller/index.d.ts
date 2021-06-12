@@ -5,6 +5,7 @@ import 'egg';
 import ExportHome from '../../../app/controller/home';
 import ExportUser from '../../../app/controller/user';
 import ExportRuleParameterRule from '../../../app/controller/rule/parameter-rule';
+import ExportRuleRequestRule from '../../../app/controller/rule/request_rule';
 import ExportValidatorsValidatators from '../../../app/controller/validators/validatators';
 
 declare module 'egg' {
@@ -13,6 +14,7 @@ declare module 'egg' {
     user: ExportUser;
     rule: {
       parameterRule: ExportRuleParameterRule;
+      requestRule: ExportRuleRequestRule;
     }
     validators: {
       validatators: ExportValidatorsValidatators;
