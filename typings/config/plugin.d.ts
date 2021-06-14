@@ -1,4 +1,4 @@
-// This file is created by egg-ts-helper@1.25.8
+// This file is created by egg-ts-helper@1.25.9
 // Do not modify this file!!!!!!!!!
 
 import 'egg';
@@ -20,6 +20,7 @@ import 'egg-cors';
 import 'egg-mongoose';
 import 'egg-jwt';
 import 'egg-socket.io';
+import 'egg-swagger-doc';
 import { EggPluginItem } from 'egg';
 declare module 'egg' {
   interface EggPlugin {
@@ -41,5 +42,6 @@ declare module 'egg' {
     mongoose?: EggPluginItem;
     jwt?: EggPluginItem;
     io?: EggPluginItem;
+    swaggerdoc?: EggPluginItem;
   }
 }

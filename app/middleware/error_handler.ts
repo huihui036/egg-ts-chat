@@ -15,7 +15,8 @@ module.exports = () => {
         msg: "this is error",
         code: 0,
         httpCode: 0,
-        errsInfo: 0
+        errsInfo: 0,
+        data: []
       };
 
       if (err instanceof HttpExceptions) {
@@ -24,6 +25,7 @@ module.exports = () => {
         error.msg = err.msg;
         error.code = err.code;
         error.httpCode = err.httpCode;
+        error.data = err.data
       } else if (err instanceof HttpParameterExceptions) {
         status = 401
         error.requestUrl = `${ctx.method} : ${ctx.path}`;
@@ -40,6 +42,7 @@ module.exports = () => {
       }
       // 从 error 对象上读出各个属性，设置到响应中
       ctx.body = error;
+
       if (status === 422) {
         ctx.body.detail = err.errors;
       }

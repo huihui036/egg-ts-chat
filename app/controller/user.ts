@@ -52,4 +52,14 @@ export default class UserController extends Controller {
     await this.service.user.recetPassword(userData)
   }
 
+  // 获取 用户信息
+  public async getUserData() {
+    const { ctx } = this;
+
+    const { authorization } = ctx.headers
+
+    await this.service.user.getUserData(authorization as string)
+
+  }
+
 }

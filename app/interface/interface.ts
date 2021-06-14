@@ -5,6 +5,7 @@ export interface ErrorData {
   code: number;
   httpCode: number;
   errsInfo: number
+  data?: any[]
 }
 export interface ParameterError {
   message: string;

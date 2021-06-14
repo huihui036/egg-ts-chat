@@ -5,7 +5,7 @@ export default function (app: { mongoose: any }) {
   const UserSchema = new Schema({
     userName: {
       type: String,
-      minlength: [6, '最小长度为6'],
+      minlength: [2, '最小长度为2'],
       maxlength: [18, '最大度为18'],
       required: [true, '此项为必填内容'],
       comment: '用户名称',

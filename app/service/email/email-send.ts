@@ -21,7 +21,7 @@ export default class SendeEamil extends Controller {
         throw new HttpExceptions('邮箱发送失败');
       }
       transporter.close()
-      console.log('mail sent:', info.response)
+      console.log('mail sent:', info)
     })
     await app.redis.setex(userData.email, 6 * 10 * 30, JSON.stringify(saveCode))
   }

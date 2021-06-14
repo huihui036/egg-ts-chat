@@ -30,12 +30,15 @@ const plugin: EggPlugin = {
     enable: true,
     package: 'egg-jwt',
   },
- 
+
   io: {
     enable: true,
     package: 'egg-socket.io',
   },
-
+  swaggerdoc: {
+    enable: true,
+    package: 'egg-swagger-doc',
+  }
 
 };
 

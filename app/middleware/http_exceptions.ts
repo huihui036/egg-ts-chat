@@ -3,11 +3,13 @@ class HttpExceptions extends Error {
   public code: number;
   public msg: string;
   public httpCode: number;
-  constructor(msg = '服务器异常', code = 1, httpCode = 400) {
+  public data: any[];
+  constructor(msg = '服务器出错误了', code = 1, httpCode = 400, data?) {
     super();
     this.code = code;
     this.msg = msg;
     this.httpCode = httpCode;
+    this.data = data;
   }
 }
 

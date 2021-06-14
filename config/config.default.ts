@@ -8,7 +8,7 @@ export default (appInfo: EggAppInfo) => {
   config.keys = appInfo.name + '_1610851740528_5231';
 
   // add your egg config in here
-  config.middleware = [ 'errorHandler' ];
+  config.middleware = ['errorHandler'];
 
   // add your special config in here
   const bizConfig = {
@@ -47,7 +47,7 @@ export default (appInfo: EggAppInfo) => {
       enable: false,
     },
     // 跨域白名单
-    domainWhiteList: [ '*' ],
+    domainWhiteList: ['*'],
   };
   // 允许跨域的方法
   config.cors = {
@@ -65,17 +65,29 @@ export default (appInfo: EggAppInfo) => {
 
     namespace: {
       '/tictactoe': {
-        connectionMiddleware: [ 'auth' ],
+        connectionMiddleware: ['auth'],
         packetMiddleware: [],
       },
       '/': {
-        connectionMiddleware: [ 'auth' ],
+        connectionMiddleware: ['auth'],
         packetMiddleware: [],
       },
     },
   };
 
-
+  config.swaggerdoc = {
+    dirScanner: './app/controller', //插件扫描的文档路径
+    apiInfo: {
+      title: 'swagger文档',
+      description: 'egg.js swagger-demo文档',
+      version: '1.0.0',
+    },
+    consumes: ['application/json', 'multipart/form-data'], // 指定处理请求的提交内容类型（Content-Type），例如application/json, text/html
+    produces: ['application/json', 'multipart/form-data'], // 指定返回的内容类型，仅当request请求头中的(Accept)类型中包含该指定类型才返回
+    schemes: ['http', 'https'],
+    routerMap: true, // 是否自动生成route
+    enable: true,
+  };
 
   // the return config will combines to EggAppConfig
   return {

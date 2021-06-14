@@ -36,6 +36,7 @@ export default class User extends Service {
     const userDb: RegiterDb = { ...userData, state: 1, account: uuidv4() };
     const saltRounds = 10;
     userDb.password = hashSync(userDb.password, saltRounds);
+
     const creatUser = await this.app.model.User.create(userDb);
     if (creatUser) {
       throw new HttpExceptions('注册成功', 10008, 200);
@@ -58,10 +59,8 @@ export default class User extends Service {
       userId: userIsExistence.id,
     }, this.app.config.jwt.secret);
 
-    return {
-      token,
-      id: userIsExistence.id,
-    };
+    throw new HttpExceptions('登入成功', 10006, 200, { token: token });
+
   }
 
   public async getEmailCode(userData: checkCode) {
@@ -74,16 +73,16 @@ export default class User extends Service {
       isUserData = JSON.parse(redisData);
     }
     console.log(isUserData);
-    if (isUserData && isUserData.code_type === userData.codeType) {
-      throw new HttpExceptions('验证码已发送', 10003, 300);
-    }
+    // if (isUserData && isUserData.code_type === userData.codeType) {
+    //   throw new HttpExceptions('验证码已发送', 10003, 300);
+    // }
     const userIsExistence = await this.app.model.User.findOne({ email: userData.email });
     if (userIsExistence && isUserData.code_type === userData.codeType) {
-      throw new HttpExceptions('该邮箱已经被注册', 10001, 200);
+      throw new HttpExceptions('该邮箱已经被注册', 10001, 400);
     }
     // 将验证码通过email 发送到用户邮箱
     await this.service.email.emailSend.sendEmail(userData);
-    throw new HttpExceptions(`验证码已经成功发送${isUserData.code}`, 10002, 200);
+    throw new HttpExceptions(`验证码已经成功发送${isUserData}`, 10002, 200);
   }
 
   public async recetPassword(userData: recetPasswrd) {
@@ -115,5 +114,24 @@ export default class User extends Service {
     }
 
 
+  }
+  // 获取用户信息
+  public async getUserData(token: string) {
+    if (!token) throw new HttpExceptions(`请传入toekn`, 10002, 400);
+    const headerToken = token.split('Bearer ')[1]
+    console.log(headerToken)
+    const tokenData = this.app.jwt.verify(headerToken, '165165')
+
+    const userData: any = tokenData as Object
+
+    const findUserData = await this.app.model.User.findOne({ _id: userData.userId })
+    const returnDat = {
+      _id: findUserData._id,
+      account: findUserData.account,
+      date: findUserData.date,
+      email: findUserData.email,
+      userName: findUserData.userName
+    }
+    throw new HttpExceptions(`成功`, 10002, 200, returnDat);
   }
 }

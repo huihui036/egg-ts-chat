@@ -2,7 +2,7 @@ const emailCode = {
   email: {
     type: 'email',
   },
-  code_type: [1000, 1001, 1002],
+  checkCode: [1000, 1001, 1002],
 
 };
 
@@ -10,10 +10,10 @@ const regitertRule = {
   email: {
     type: 'email',
   },
-  name: {
+  userName: {
     type: "string",
   },
-  chek_code: {
+  checkCode: {
     type: "string",
     max: 6,
     min: 6,

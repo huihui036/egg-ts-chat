@@ -22,6 +22,7 @@
     "inlineSourceMap": true,
     "importHelpers": true,
     "baseUrl": ".",
+    "strictNullChecks": false
   },
   "exclude": [
     "app/public",

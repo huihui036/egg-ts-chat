@@ -37,7 +37,8 @@ function emailConnect(userEmail: string, type: number) {
       contexType = ConnextType.recetPassword;
       break
   }
-  const randmonCode = randMathCode(3)
+  // 随机验证码为数
+  const randmonCode = randMathCode(6)
   const mailConnect = {
     // 发件人 邮箱  '昵称<发件人邮箱>'
     from: '自主聊天网络<1315574336@qq.com>',
