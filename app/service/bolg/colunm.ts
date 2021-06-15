@@ -13,8 +13,8 @@ export default class Colunm extends Service {
   public async getCounm(newstr: pageSzieSsech) {
 
     const creatUser = await this.app.model.Colunm.find().limit(newstr.pagesize).skip((newstr.currentpage - 1) * newstr.pagesize);
-    if (!creatUser) {
-      throw new HttpExceptions('未查询到专题结果', 10004, 200);
+    if (!creatUser || creatUser.length <= 0) {
+      throw new HttpExceptions('未查询到专题结果', 10004, 400);
     }
     throw new HttpExceptions('成功', 10004, 200, creatUser);
   }

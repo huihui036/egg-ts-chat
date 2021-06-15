@@ -2,7 +2,7 @@ const emailCode = {
   email: {
     type: 'email',
   },
-  checkCode: [1000, 1001, 1002],
+  codeType: [1000, 1001, 1002],
 
 };
 

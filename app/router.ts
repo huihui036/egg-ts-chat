@@ -2,8 +2,8 @@ import { Application } from 'egg';
 
 export default (app: Application) => {
 
-  const { controller, router, io } = app;
-  router.get('/', controller.test.index);
+  const { controller, router, } = app;
+  router.get('/', controller.home.index);
   // const chat: any = io.controller
   // io.of('/').route('server', chat.index);
   // io.of('/').route('exchange', app.io.controller);
@@ -13,6 +13,7 @@ export default (app: Application) => {
   router.post('/user/register', controller.user.register);
   // 登入
   router.post('/user/login', controller.user.login);
+
   router.post('/user/recetp', controller.user.recetPassword);
   // 获取专题列表
   router.get('/column', controller.bolg.columnList.columnList)
@@ -25,7 +26,7 @@ export default (app: Application) => {
   // 获取用户参数    /user/current
   router.get('/user/current', controller.user.getUserData)
 
-  io.of('/').route('exchange', io.controller.tictactoe.exchange);
+  // io.of('/').route('exchange', io.controller.tictactoe.exchange);
 
   module.exports = app => {
     //重定向到swagger-ui.html

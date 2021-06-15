@@ -77,7 +77,7 @@ export default class User extends Service {
     //   throw new HttpExceptions('验证码已发送', 10003, 300);
     // }
     const userIsExistence = await this.app.model.User.findOne({ email: userData.email });
-    if (userIsExistence && isUserData.code_type === userData.codeType) {
+    if (userIsExistence && isUserData.codeType === userData.codeType) {
       throw new HttpExceptions('该邮箱已经被注册', 10001, 400);
     }
     // 将验证码通过email 发送到用户邮箱
@@ -104,7 +104,7 @@ export default class User extends Service {
       const password = hashSync(userData.new_password, saltRounds);
       const updata = await this.app.model.User.findOneAndUpdate({ email: userData.email }, { password });
       if (updata) {
-        throw new HttpExceptions('密码修改成', 10010, 200);
+        throw new HttpExceptions('密码修改成功', 10010, 200);
       } else {
         throw new HttpExceptions('密码修改失败', 10011, 401);
       }

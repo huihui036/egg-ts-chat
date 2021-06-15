@@ -4,7 +4,7 @@ export interface ErrorData {
   msg: string | ParameterError[];
   code: number;
   httpCode: number;
-  errsInfo: number
+  errsInfo: string
   data?: any[]
 }
 export interface ParameterError {

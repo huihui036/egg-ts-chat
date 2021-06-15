@@ -87,6 +87,16 @@ export default (appInfo: EggAppInfo) => {
     schemes: ['http', 'https'],
     routerMap: true, // 是否自动生成route
     enable: true,
+    securityDefinitions: {
+      // basicAuth: { // basicAuth之后接口注释 @basicAuth
+      //   type: "basic",
+      // },
+      token: {
+        type: 'apiKey',
+        name: 'clientkey',
+        in: 'header',
+      },
+    }
   };
 
   // the return config will combines to EggAppConfig

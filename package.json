@@ -34,7 +34,8 @@
     "egg-swagger-doc": "^2.3.2",
     "egg-validate": "^2.0.2",
     "mysql2": "^2.2.5",
-    "nodemailer": "^6.4.17"
+    "nodemailer": "^6.4.17",
+    "querystringify": "^2.2.0"
   },
   "devDependencies": {
     "@types/bcrypt": "^3.0.0",
