@@ -99,6 +99,12 @@ export default (appInfo: EggAppInfo) => {
     }
   };
 
+  // 配置上传文件白名单
+  config.multipart = {
+    fileExtensions: ['.pdf', '.txt', '.png', 'jpg', 'jpge'],
+    // fileSize: "20mb"
+  };
+
   // the return config will combines to EggAppConfig
   return {
     ...config,

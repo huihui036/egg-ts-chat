@@ -40,6 +40,7 @@ const plugin: EggPlugin = {
     package: 'egg-swagger-doc',
   }
 
+
 };
 
 export default plugin;

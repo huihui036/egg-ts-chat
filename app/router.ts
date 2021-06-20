@@ -7,8 +7,8 @@ export default (app: Application) => {
   // const chat: any = io.controller
   // io.of('/').route('server', chat.index);
   // io.of('/').route('exchange', app.io.controller);
-  // 获取验证码
-  router.post('/user/emailcode', controller.user.getEmailCode);
+  // 获取验证码  // 暂时关闭验证码功能
+  // router.post('/user/emailcode', controller.user.getEmailCode);
   // 注册
   router.post('/user/register', controller.user.register);
   // 登入
@@ -25,6 +25,7 @@ export default (app: Application) => {
 
   // 获取用户参数    /user/current
   router.get('/user/current', controller.user.getUserData)
+  router.post('/upload/file', controller.file.uploadFile)
 
   // io.of('/').route('exchange', io.controller.tictactoe.exchange);
 

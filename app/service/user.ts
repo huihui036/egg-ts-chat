@@ -16,15 +16,18 @@ export default class User extends Service {
 
   /**
    * sayHi to you
+   *  用户注册
    * @param unreData - your unreData
    */
   public async register(userData: Regiter) {
     // 密码检查
-    if (userData.password !== userData.password2) {
+    if (userData.password !== userData.confirmPassword) {
       throw new HttpExceptions('两次密码输入不同', 10006, 400);
     }
     // 验证码检查
-    const redisData = await this.app.redis.get(userData.email);
+    /**
+     * 
+     * const redisData = await this.app.redis.get(userData.email);
     if (redisData) {
       const isUserData: checkCode = JSON.parse(redisData);
       if (isUserData.code !== userData.checkCode) {
@@ -33,17 +36,21 @@ export default class User extends Service {
     } else {
       throw new HttpExceptions('验证码错误', 10007, 400);
     }
+     */
+    const findeUser = await this.app.model.User.findOne({ email: userData.email });
+    if (findeUser) throw new HttpExceptions('邮箱已经被注册', 10008, 201)
     const userDb: RegiterDb = { ...userData, state: 1, account: uuidv4() };
     const saltRounds = 10;
     userDb.password = hashSync(userDb.password, saltRounds);
-
     const creatUser = await this.app.model.User.create(userDb);
-    if (creatUser) {
-      throw new HttpExceptions('注册成功', 10008, 200);
-    }
-    throw new HttpExceptions('注册失败，请重新注册', 10009, 200);
+    if (creatUser) throw new HttpExceptions('注册成功', 10008, 200);
+    throw new HttpExceptions('注册失败，请重新注册', 10009, 400);
   }
-
+  /**
+   * sayHi to you
+   *  用户登入
+   * @param unreData - your unreData
+   */
   public async userLogin(userData: Logibn): Promise<LoginReturn> {
     const userIsExistence = await this.app.model.User.findOne({ email: userData.email });
     if (!userIsExistence) {
@@ -55,14 +62,18 @@ export default class User extends Service {
       throw new HttpExceptions('密码错误', 10007, 400);
     }
     const token = this.app.jwt.sign({
-      userName: userIsExistence.name,
+      email: userIsExistence.email,
       userId: userIsExistence.id,
     }, this.app.config.jwt.secret);
 
     throw new HttpExceptions('登入成功', 10006, 200, { token: token });
 
   }
-
+  /**
+     * sayHi to you
+     *  获取邮箱验证
+     * @param unreData - your unreData
+     */
   public async getEmailCode(userData: checkCode) {
     // 检验是否30分钟内已经发送过注册验证码
     const redisData = await this.app.redis.get(userData.email);
@@ -115,7 +126,12 @@ export default class User extends Service {
 
 
   }
-  // 获取用户信息
+
+  /**
+    * sayHi to you
+    *  获取用户信息
+    * @param unreData - your unreData
+    */
   public async getUserData(token: string) {
     if (!token) throw new HttpExceptions(`请传入toekn`, 10002, 400);
     const headerToken = token.split('Bearer ')[1]
@@ -125,13 +141,13 @@ export default class User extends Service {
     const userData: any = tokenData as Object
 
     const findUserData = await this.app.model.User.findOne({ _id: userData.userId })
-    const returnDat = {
+    const returnData = {
       _id: findUserData._id,
       account: findUserData.account,
       date: findUserData.date,
       email: findUserData.email,
       userName: findUserData.userName
     }
-    throw new HttpExceptions(`成功`, 10002, 200, returnDat);
+    throw new HttpExceptions(`成功`, 10002, 200, returnData);
   }
 }

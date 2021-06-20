@@ -35,6 +35,7 @@ module.exports = () => {
       } else {
         // 未知异常，系统异常，线上不显示堆栈信息
         // 生产环境时 500 错误的详细错误内容不返回给客户端，因为可能包含敏感信息
+        // Invalid filename
         console.log('err', err)
         error.httpCode = 403
         error.msg = status === 500 && ctx.app.config.env === 'prod'

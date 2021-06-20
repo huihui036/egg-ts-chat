@@ -15,17 +15,17 @@ export interface ParameterError {
 
 
 export interface Regiter {
-  name: string,
+  userName: string,
   avatar?: string,
-  checkCode: string
+  checkCode?: string
   password: string,
-  password2: string,
+  confirmPassword: string,
   email: string,
 }
 
 export interface RegiterDb {
   id?: string,
-  name: string,
+  userName: string,
   account: string,
   avatar?: string,
   password: string,

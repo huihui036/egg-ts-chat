@@ -2,6 +2,7 @@
 // Do not modify this file!!!!!!!!!
 
 import 'egg';
+import ExportFile from '../../../app/controller/file';
 import ExportHome from '../../../app/controller/home';
 import ExportUser from '../../../app/controller/user';
 import ExportBolgColumnList from '../../../app/controller/bolg/column-list';
@@ -12,6 +13,7 @@ import ExportValidatorsValidatators from '../../../app/controller/validators/val
 
 declare module 'egg' {
   interface IController {
+    file: ExportFile;
     home: ExportHome;
     user: ExportUser;
     bolg: {

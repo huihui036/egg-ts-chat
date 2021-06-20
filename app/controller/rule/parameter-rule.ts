@@ -3,7 +3,6 @@ const emailCode = {
     type: 'email',
   },
   codeType: [1000, 1001, 1002],
-
 };
 
 const regitertRule = {
@@ -14,15 +13,14 @@ const regitertRule = {
     type: "string",
   },
   checkCode: {
+    required: false,
     type: "string",
-    max: 6,
-    min: 6,
   },
   password: {
     type: "password",
     allowEmpty: false
   },
-  password2: {
+  confirmPassword: {
     type: "password",
     allowEmpty: false
   }
