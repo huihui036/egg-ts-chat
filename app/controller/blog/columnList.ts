@@ -1,13 +1,13 @@
 /*
  * @Author: qingHui
  * @Date: 2021-06-15 09:34:41
- * @LastEditors: qingHui
- * @LastEditTime: 2021-08-19 17:46:41
+ * @LastEditors: XuQinghui
+ * @LastEditTime: 2021-08-19 21:02:04
  * @Description: 
  */
-// import { pageSeizeSech } from 'app/interface/blog';
+import { pageSeizeSech } from 'app/interface/blog';
 import { Controller } from 'egg';
-// import { parse } from 'querystringify'
+import { parse } from 'querystringify'
 // import HttpExceptions from '../middleware/http_exceptions'
 /**
  * @Controller 专题
@@ -24,21 +24,21 @@ export default class Column extends Controller {
      */
   public async columnList() {
     const { ctx } = this;
-  //  let queys: string = ctx.url
-    console.log( ctx.url)
-    // const queryCheck = queys.indexOf("?")
-    // let newest: pageSeizeSech = {
-    //   curettage: 2,
-    //   pagesize: 10
-    // }
-    // if (queryCheck) {
-    //   let getPage = queys.replace('?', '&')
-    //   let pageData = parse(getPage)
-    //   newest.curettage = +(pageData as pageSeizeSech).curettage || 1
-    //   newest.pagesize = +(pageData as pageSeizeSech).pagesize || 1
-    // }
+    let queys: string = ctx.url
+    console.log(ctx.url)
+    const queryCheck = queys.indexOf("?")
+    let newest: pageSeizeSech = {
+      curettage: 2,
+      pagesize: 10
+    }
+    if (queryCheck) {
+      let getPage = queys.replace('?', '&')
+      let pageData = parse(getPage)
+      newest.curettage = +(pageData as pageSeizeSech).curettage || 1
+      newest.pagesize = +(pageData as pageSeizeSech).pagesize || 1
+    }
 
-    ctx.body = {"name":"1231"}
+    ctx.body = await ctx.service.blog.column.getConus(newest)
 
   }
   /**

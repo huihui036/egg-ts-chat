@@ -1,8 +1,8 @@
 /*
  * @Author: qingHui
  * @Date: 2021-06-15 09:34:41
- * @LastEditors: qingHui
- * @LastEditTime: 2021-08-18 17:02:40
+ * @LastEditors: XuQinghui
+ * @LastEditTime: 2021-08-19 20:49:53
  * @Description: 
  */
 import { pageSeizeSech } from 'app/interface/blog';
@@ -36,6 +36,6 @@ export default class PostList extends Controller {
       newest.curettage = +(pageData as pageSeizeSech).curettage || 1
       newest.pagesize = +(pageData as pageSeizeSech).pagesize || 10
     }
-    ctx.body = await ctx.service.blog.post.getPopsByColumnId(paramsId.id, newest)
+    ctx.body = await ctx.service.blog.post.getPostByColumnId(paramsId.id, newest)
   }
 }

@@ -4,7 +4,7 @@
 import 'egg';
 import ExportHome from '../../../app/controller/home';
 import ExportUser from '../../../app/controller/user';
-import ExportBlogColumnList from '../../../app/controller/blog/column-list';
+import ExportBlogColumnList from '../../../app/controller/blog/columnList';
 import ExportBlogPosts from '../../../app/controller/blog/posts';
 import ExportRuleParameterRule from '../../../app/controller/rule/parameter-rule';
 import ExportRuleRequestRule from '../../../app/controller/rule/request_rule';

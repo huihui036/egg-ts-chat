@@ -1,8 +1,8 @@
 /*
  * @Author: qingHui
  * @Date: 2021-06-15 09:34:41
- * @LastEditors: qingHui
- * @LastEditTime: 2021-08-19 09:15:14
+ * @LastEditors: XuQinghui
+ * @LastEditTime: 2021-08-19 21:02:19
  * @Description: 
  */
 import { HttpExceptions } from '../../middleware/http_exceptions';
@@ -18,7 +18,7 @@ export default class Column extends Service {
    */
 
   public async getConus(newts: pageSeizeSech) {
-
+    console.log("123")
     const creatUser = await this.app.model.Column.find().limit(newts.pagesize).skip((newts.curettage - 1) * newts.pagesize);
     if (!creatUser || creatUser.length <= 0) {
       throw new HttpExceptions('未查询到专题结果', 10004, 400);

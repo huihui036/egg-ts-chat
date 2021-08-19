@@ -1,7 +1,15 @@
+/*
+ * @Author: XuQinghui
+ * @LastEditors: XuQinghui
+ * @Date: 2021-06-12 16:40:53
+ * @LastEditTime: 2021-08-19 21:04:10
+ * @FilePath: \chat-ts-server\app\model\column.ts
+ * @Description: 
+ */
 export default function (app: { mongoose: any }) {
   const mongoose = app.mongoose;
   const Schema = mongoose.Schema;
-  const ColunmSchema = new Schema({
+  const ColumnSchema = new Schema({
     avatar: {
       type: String,
       comment: '用户头像',
@@ -27,7 +35,7 @@ export default function (app: { mongoose: any }) {
     },
   });
 
-  const Colunm = mongoose.model('colunm', ColunmSchema)
+  const Column = mongoose.model('colunm', ColumnSchema)
 
-  return Colunm;
+  return Column;
 }
