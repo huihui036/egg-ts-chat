@@ -1,3 +1,10 @@
+/*
+ * @Author: qingHui
+ * @Date: 2021-04-16 14:19:03
+ * @LastEditors: qingHui
+ * @LastEditTime: 2021-08-19 14:23:50
+ * @Description: 
+ */
 export interface ErrorData {
   status: number;
   requestUrl: string;
@@ -14,7 +21,7 @@ export interface ParameterError {
 }
 
 
-export interface Regiter {
+export interface Register {
   name: string,
   avatar?: string,
   checkCode: string
@@ -23,7 +30,7 @@ export interface Regiter {
   email: string,
 }
 
-export interface RegiterDb {
+export interface RegisterDb {
   id?: string,
   name: string,
   account: string,
@@ -32,7 +39,7 @@ export interface RegiterDb {
   email: string,
   state: number
 }
-export interface Logibn {
+export interface Logion {
   email: string,
   password: string
 }
@@ -45,8 +52,8 @@ export interface checkCode {
 }
 
 
-export interface recetPasswrd {
+export interface resetPassword {
   email: string,
-  new_password: string,
-  check_code: string
+  newPassword: string,
+  checkCode: string
 }

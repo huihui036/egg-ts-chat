@@ -1,4 +1,11 @@
-import { pageSzieSsech } from 'app/interface/bolg';
+/*
+ * @Author: qingHui
+ * @Date: 2021-06-15 09:34:41
+ * @LastEditors: qingHui
+ * @LastEditTime: 2021-08-18 17:02:40
+ * @Description: 
+ */
+import { pageSeizeSech } from 'app/interface/blog';
 import { Controller } from 'egg';
 import { parse } from 'querystringify'
 /**
@@ -17,18 +24,18 @@ export default class PostList extends Controller {
   public async getPostList() {
     const { ctx } = this
     let paramsId = this.ctx.params
-    let querys: string = ctx.url
-    const querysCheck = querys.indexOf("?")
-    let newstr: pageSzieSsech = {
-      currentpage: 1,
+    let queys: string = ctx.url
+    const queysCheck = queys.indexOf("?")
+    let newest: pageSeizeSech = {
+      curettage: 1,
       pagesize: 10
     }
-    if (querysCheck) {
-      let getPage = querys.replace('?', '&')
+    if (queysCheck) {
+      let getPage = queys.replace('?', '&')
       let pageData = parse(getPage)
-      newstr.currentpage = +(pageData as pageSzieSsech).currentpage || 1
-      newstr.pagesize = +(pageData as pageSzieSsech).pagesize || 10
+      newest.curettage = +(pageData as pageSeizeSech).curettage || 1
+      newest.pagesize = +(pageData as pageSeizeSech).pagesize || 10
     }
-    ctx.body = await ctx.service.bolg.post.getPopstByColunmId(paramsId.id, newstr)
+    ctx.body = await ctx.service.blog.post.getPopsByColumnId(paramsId.id, newest)
   }
 }

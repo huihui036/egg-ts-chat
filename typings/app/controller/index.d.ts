@@ -4,26 +4,26 @@
 import 'egg';
 import ExportHome from '../../../app/controller/home';
 import ExportUser from '../../../app/controller/user';
-import ExportBolgColumnList from '../../../app/controller/bolg/column-list';
-import ExportBolgPosts from '../../../app/controller/bolg/posts';
+import ExportBlogColumnList from '../../../app/controller/blog/column-list';
+import ExportBlogPosts from '../../../app/controller/blog/posts';
 import ExportRuleParameterRule from '../../../app/controller/rule/parameter-rule';
 import ExportRuleRequestRule from '../../../app/controller/rule/request_rule';
-import ExportValidatorsValidatators from '../../../app/controller/validators/validatators';
+import ExportValidatorsValidators from '../../../app/controller/validators/validators';
 
 declare module 'egg' {
   interface IController {
     home: ExportHome;
     user: ExportUser;
-    bolg: {
-      columnList: ExportBolgColumnList;
-      posts: ExportBolgPosts;
+    blog: {
+      columnList: ExportBlogColumnList;
+      posts: ExportBlogPosts;
     }
     rule: {
       parameterRule: ExportRuleParameterRule;
       requestRule: ExportRuleRequestRule;
     }
     validators: {
-      validatators: ExportValidatorsValidatators;
+      validators: ExportValidatorsValidators;
     }
   }
 }

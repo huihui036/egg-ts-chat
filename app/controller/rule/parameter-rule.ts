@@ -1,3 +1,10 @@
+/*
+ * @Author: qingHui
+ * @Date: 2021-06-15 09:34:41
+ * @LastEditors: qingHui
+ * @LastEditTime: 2021-08-19 14:22:50
+ * @Description: 
+ */
 const emailCode = {
   email: {
     type: 'email',
@@ -6,7 +13,7 @@ const emailCode = {
 
 };
 
-const regitertRule = {
+const registersRule = {
   email: {
     type: 'email',
   },
@@ -36,15 +43,15 @@ const loginRule = {
     allowEmpty: false
   },
 }
-const recetPasswrdRule = {
+const rectPasswordRule = {
   email: {
     type: 'email',
   },
-  new_password: {
+  newPassword: {
     type: "password",
     allowEmpty: false
   },
-  check_code: {
+  checkCode: {
     type: "string",
     max: 6,
     min: 6,
@@ -52,4 +59,4 @@ const recetPasswrdRule = {
 }
 
 
-export { emailCode, regitertRule, loginRule, recetPasswrdRule }
+export { emailCode, registersRule, loginRule, rectPasswordRule  }

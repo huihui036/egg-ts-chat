@@ -74,7 +74,10 @@ export default (appInfo: EggAppInfo) => {
       },
     },
   };
-
+  // 配置上传文件白名单
+  config.multipart = {
+    fileExtensions: ['.pdf', '.txt', '.xlsx', 'png', 'jpg', 'jpge'],
+  };
   config.swaggerdoc = {
     dirScanner: './app/controller', //插件扫描的文档路径
     apiInfo: {
@@ -88,14 +91,14 @@ export default (appInfo: EggAppInfo) => {
     routerMap: true, // 是否自动生成route
     enable: true,
     securityDefinitions: {
-      // basicAuth: { // basicAuth之后接口注释 @basicAuth
-      //   type: "basic",
-      // },
-      token: {
+     
+      Bearer: {
         type: 'apiKey',
-        name: 'clientkey',
+        name: 'Authorization',
         in: 'header',
       },
+      
+
     }
   };
 

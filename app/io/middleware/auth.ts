@@ -1,3 +1,10 @@
+/*
+ * @Author: qingHui
+ * @Date: 2021-06-15 09:34:41
+ * @LastEditors: qingHui
+ * @LastEditTime: 2021-08-19 09:22:57
+ * @Description: 
+ */
 import { Context } from 'egg';
 
 import { verify } from 'jsonwebtoken';
@@ -12,26 +19,26 @@ export default function AuthMiddleware() {
     const id = socket.id;
     const nsp = app.io.of('/');
     // const query = socket.handshake.query;
-    console.log('sockeId', id);
+    console.log('socketId', id);
 
     const userToken = socket.handshake.query.token;
-    const varifyToken: any = verify(userToken, app.config.jwt.secret, (err, decoded) => {
+    const verifyToken: any = verify(userToken, app.config.jwt.secret, (err, decoded) => {
       if (!err) {
         return decoded;
       }
       return err;
     });
 
-    if (!varifyToken.userId) {
-      ctx.socket.emit('remove', 'tonken is error');
-      ctx.socket.disconnect(true);
-      return;
+    if (!verifyToken.userId) {
+      ctx.socket.emit('remove', 'token is error');
+      //   ctx.socket.disconnect(true);
+      //    return;
     }
 
-    console.log('vwerTOKNE', varifyToken);
+
     // 用户信息
-    logger.info(`用户加入id：${id}`);
-    logger.info(`用户离开id：${id}`);
+    // logger.info(`用户加入id：${id}`);
+    //   logger.info(`用户离开id：${id}`);
     logger.debug('#join', 123);
     const room = '123';
     socket.join(room);
@@ -49,13 +56,13 @@ export default function AuthMiddleware() {
         status: 1000,
       };
       app.model.Message.create(messageData);
-      console.log('messag', obj);
-      nsp.to(room).emit('online', {
+      console.log('message', obj);
+      nsp.to(room).emit('message', {
         action: 'const',
         message: obj,
       });
     });
-    nsp.emit('message', 'datgat');
+
     logger.info('players: 123');
     await next();
   };

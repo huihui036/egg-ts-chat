@@ -1,9 +1,9 @@
 import { Controller } from 'egg';
 
-import { Regiter, Logibn, checkCode, recetPasswrd } from '../interface/interface'
-import Validators from './validators/validatators'
+import { Register, Logion, checkCode,  resetPassword } from '../interface/interface'
+import Validators from './validators/validators'
 
-import { emailCode, regitertRule, loginRule, recetPasswrdRule } from './rule/parameter-rule'
+import { emailCode, registersRule, loginRule, rectPasswordRule } from './rule/parameter-rule'
 /**
  * @Controller 用户信息
  */
@@ -33,9 +33,9 @@ export default class UserController extends Controller {
  */
   public async register() {
     const { ctx, } = this;
-    const userData: Regiter = this.ctx.request.body
+    const userData: Register = this.ctx.request.body
     // 验证参数
-    new Validators(ctx).parameter(regitertRule)
+    new Validators(ctx).parameter(registersRule)
     await ctx.service.user.register(userData)
   }
 
@@ -48,19 +48,13 @@ export default class UserController extends Controller {
 */
   public async login() {
     const { ctx, } = this;
-    const userData: Logibn = this.ctx.request.body
+    const userData: Logion = this.ctx.request.body
     // 验证参数
     new Validators(ctx).parameter(loginRule)
     // 成功返回
-    const userLogin = await ctx.service.user.userLogin(userData)
+    await ctx.service.user.userLogin(userData)
 
-    ctx.body = {
-      status: 200,
-      code: 10000,
-      user_id: userLogin.id,
-      token: userLogin.token,
-      httpCode: 200,
-    }
+    
 
   }
   // 忘记密码
@@ -71,13 +65,13 @@ export default class UserController extends Controller {
  * @request body recetpPassword *body
  * @response 200 emailCode 登入成功
  */
-  public async recetPassword() {
+  public async resetPassword() {
     const { ctx, } = this;
-    const userData: recetPasswrd = this.ctx.request.body
+    const userData: resetPassword = this.ctx.request.body
     // 验证参数
-    new Validators(ctx).parameter(recetPasswrdRule)
+    new Validators(ctx).parameter(rectPasswordRule)
 
-    await this.service.user.recetPassword(userData)
+    await this.service.user.rectPassword(userData)
   }
 
   /**
@@ -88,10 +82,29 @@ export default class UserController extends Controller {
      */
   public async getUserData() {
     const { ctx } = this;
-
-    const { authorization } = ctx.headers
-
+ 
+    const {  authorization } = ctx.header
     await this.service.user.getUserData(authorization as string)
+
+  }
+
+  /**
+  * @summary 上传图片
+  * @description 上传图片
+  * @router post /v1/upload
+  * @request formData string id 用户ID
+  * @request formData file *file
+  * @response 200 uploadResponse 更新成功
+  */
+  async upload() {
+    const { ctx, service } = this;
+
+    const stream = await ctx.getFileStream();
+    console.log(stream)
+    // const id = stream.fields.id;
+    const origin = ctx.origin;
+
+    ctx.body = await service.user.uploadImg(origin, stream);
 
   }
 

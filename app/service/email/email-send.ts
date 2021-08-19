@@ -1,7 +1,14 @@
+/*
+ * @Author: qingHui
+ * @Date: 2021-04-16 14:19:03
+ * @LastEditors: qingHui
+ * @LastEditTime: 2021-08-18 16:07:15
+ * @Description: 
+ */
 import * as nodemailer from 'nodemailer';
 import { Controller } from 'egg';
 import { HttpExceptions } from '../../middleware/http_exceptions';
-import { emailConnect } from './emali-connect';
+import { emailConnect } from './email-connect';
 import configData from '../../../config/config.data';
 import { checkCode } from '../../interface/interface';
 export default class SendeEamil extends Controller {
