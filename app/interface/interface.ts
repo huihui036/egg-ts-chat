@@ -2,16 +2,16 @@
  * @Author: qingHui
  * @Date: 2021-04-16 14:19:03
  * @LastEditors: qingHui
- * @LastEditTime: 2021-08-19 14:23:50
+ * @LastEditTime: 2021-08-20 14:56:04
  * @Description: 
  */
 export interface ErrorData {
-  status: number;
+  
   requestUrl: string;
-  msg: string | ParameterError[];
-  code: number;
-  httpCode: number;
-  errsInfo: string
+  msg: string ;
+  statusCode: number;
+  
+  errsInfo: string | ParameterError[]
   data?: any[]
 }
 export interface ParameterError {

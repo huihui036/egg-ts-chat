@@ -1,35 +1,35 @@
-import { EggAppConfig, EggAppInfo, PowerPartial } from 'egg';
+import { EggAppConfig, EggAppInfo, PowerPartial } from 'egg'
 
 export default (appInfo: EggAppInfo) => {
-  const config = {} as PowerPartial<EggAppConfig>;
+  const config = {} as PowerPartial<EggAppConfig>
 
   // override config from framework / plugin
   // use for cookie sign key, should change to your own and keep security
-  config.keys = appInfo.name + '_1610851740528_5231';
+  config.keys = appInfo.name + '_1610851740528_5231'
 
   // add your egg config in here
-  config.middleware = ['errorHandler'];
+  config.middleware = ['errorHandler']
 
   // add your special config in here
   const bizConfig = {
     sourceUrl: `https://github.com/eggjs/examples/tree/master/${appInfo.name}`,
-  };
+  }
   config.security = {
     csrf: {
       enable: false,
     },
-  };
+  }
 
   config.cors = {
     origin: '*',
-    allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH'
-  };
+    allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH',
+  }
   config.mongoose = {
     client: {
       url: 'mongodb://127.0.0.1:27017/egg-mongo',
       options: {},
     },
-  };
+  }
   config.redis = {
     client: {
       port: 6379,
@@ -37,10 +37,28 @@ export default (appInfo: EggAppInfo) => {
       password: '',
       db: 0,
     },
-  };
+  }
   config.jwt = {
     secret: '165165',
-  };
+  }
+  config.requestResult= {
+    successes : 1 ,// 成功
+    fail : 4, //失败
+    dataEmpty :5, //数据为空
+    forbidden : 6, // 权限拒绝
+  }
+  config.emailData = {
+    // 163邮箱 为smtp.163.com
+    host: 'smtp.qq.com', //这是qq邮箱
+    //端口
+    port: 465,
+    auth: {
+      // 发件人邮箱账号
+      user: '1315574336@qq.com',
+      //发件人邮箱的授权码 这里可以通过qq邮箱获取 并且不唯一 hqeztzqnfzxyfihg
+      pass: 'rijvynuaaesdbacd',
+    },
+  }
   config.security = {
     // 关闭 csrf
     csrf: {
@@ -48,12 +66,12 @@ export default (appInfo: EggAppInfo) => {
     },
     // 跨域白名单
     domainWhiteList: ['*'],
-  };
+  }
   // 允许跨域的方法
   config.cors = {
     origin: '*',
     allowMethods: 'GET, PUT, POST, DELETE, PATCH',
-  };
+  }
   config.io = {
     init: {
       wsEngine: 'ws',
@@ -73,11 +91,11 @@ export default (appInfo: EggAppInfo) => {
         packetMiddleware: [],
       },
     },
-  };
+  }
   // 配置上传文件白名单
   config.multipart = {
     fileExtensions: ['.pdf', '.txt', '.xlsx', 'png', 'jpg', 'jpge'],
-  };
+  }
   config.swaggerdoc = {
     dirScanner: './app/controller', //插件扫描的文档路径
     apiInfo: {
@@ -91,20 +109,17 @@ export default (appInfo: EggAppInfo) => {
     routerMap: true, // 是否自动生成route
     enable: true,
     securityDefinitions: {
-     
       Bearer: {
         type: 'apiKey',
         name: 'Authorization',
         in: 'header',
       },
-      
-
-    }
-  };
+    },
+  }
 
   // the return config will combines to EggAppConfig
   return {
     ...config,
     ...bizConfig,
-  };
-};
+  }
+}

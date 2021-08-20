@@ -2,7 +2,7 @@
  * @Author: qingHui
  * @Date: 2021-04-16 14:19:03
  * @LastEditors: qingHui
- * @LastEditTime: 2021-08-18 16:07:15
+ * @LastEditTime: 2021-08-19 18:23:06
  * @Description: 
  */
 import * as nodemailer from 'nodemailer';
